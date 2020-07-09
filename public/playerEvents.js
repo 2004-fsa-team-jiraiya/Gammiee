@@ -38,7 +38,7 @@ const events = (self) => {
 };
 
 export function addPlayer(self, playerInfo) {
-  self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, "alien", 1);
+  self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, "werewolf", 1);
   if (self.scene.key === "gameScene") {
     self.physics.add.collider(self.ground, [
       self.player,

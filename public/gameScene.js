@@ -67,6 +67,11 @@ export default class GameScene extends Phaser.Scene {
       spacing: 1,
     });
 
+    this.load.spritesheet("werewolf", "assets/werewolf.png", {
+      frameWidth: 42.5,
+      frameHeight: 190,
+    });
+
     this.load.json("levelData", "json/levelData.json");
   }
 
@@ -154,6 +159,8 @@ export default class GameScene extends Phaser.Scene {
       frameRate: 8,
       repeat: -1,
     });
+
+
 
     this.anims.create({
       key: "burning",

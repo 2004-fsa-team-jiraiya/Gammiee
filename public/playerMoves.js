@@ -5,7 +5,7 @@ const playerMoves = (self) => {
     let onGround =
       self.player.body.blocked.down || self.player.body.touching.down;
     if (!self.player.anims.isPlaying) {
-      self.player.anims.play("walking");
+      // self.player.anims.play("werewolfWalking");
     }
     if (self.cursors.left.isDown) {
       self.player.body.setVelocityX(-self.playerSpeed);
@@ -16,11 +16,11 @@ const playerMoves = (self) => {
       self.player.flipX = true;
 
       if (!self.player.anims.isPlaying) {
-        self.player.anims.play("walking");
+        // self.player.anims.play("werewolfWalking");
       }
     } else {
       self.player.body.setVelocityX(0);
-      self.player.anims.stop("walking");
+      // self.player.anims.stop("werewolfWalking");
       //default pose
       self.player.setFrame(1);
     }
@@ -42,14 +42,15 @@ const playerMoves = (self) => {
       self.player.oldPosition &&
       (x !== self.player.oldPosition.x ||
         y !== self.player.oldPosition.y ||
-        flipX !== self.player.oldPosition.flipX ||
-        frame !== self.player.anims.currentFrame.index)
+        flipX !== self.player.oldPosition.flipX
+        // || frame !== self.player.anims.currentFrame.index
+      )
     ) {
       self.socket.emit("playerMovement", {
         x: self.player.x,
         y: self.player.y,
         flipX: self.player.flipX,
-        frame: self.player.anims.currentFrame.index,
+        // frame: self.player.anims.currentFrame.index,
       });
     }
 

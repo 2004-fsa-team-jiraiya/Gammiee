@@ -20,6 +20,14 @@ export default class WaitingRoom extends Phaser.Scene {
       margin: 1,
       spacing: 1,
     });
+
+    this.load.spritesheet("werewolf", "assets/werewolf.png", {
+      frameWidth: 171.25,
+      frameHeight: 190,
+      margin: 1,
+      spacing: 1,
+    });
+
   }
   create() {
     this.socket = socket;
@@ -27,6 +35,16 @@ export default class WaitingRoom extends Phaser.Scene {
     this.anims.create({
       key: "walking",
       frames: this.anims.generateFrameNames("alien", {
+        //frames that are moving
+        frames: [0, 1, 2, 3],
+      }),
+      frameRate: 8,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "werewolfWalking",
+      frames: this.anims.generateFrameNames("werewolf", {
         //frames that are moving
         frames: [0, 1, 2, 3],
       }),
@@ -46,7 +64,7 @@ export default class WaitingRoom extends Phaser.Scene {
     //this.physics.add.collider(this.player, this.ground);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.text = this.add.text(1150, 1000);
-    this.timedEvent = this.time.delayedCall(100, this.onEvent, [], this);
+    this.timedEvent = this.time.delayedCall(10000000, this.onEvent, [], this);
     events(this);
   }
 
