@@ -38,7 +38,7 @@ const events = (self) => {
 };
 
 export function addPlayer(self, playerInfo) {
-  self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, "werewolf", 1);
+  self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, "dino", 1);
   if (self.scene.key === "gameScene") {
     self.physics.add.collider(self.ground, [
       self.player,
@@ -53,7 +53,7 @@ export function addPlayer(self, playerInfo) {
     self.physics.add.collider(self.ground, self.player);
   }
 
-  self.player.body.bounce.y = 0.2;
+  self.player.body.bounce.y = 0.1;
   self.player.body.gravity.y = 800;
   self.player.body.collideWorldBounds = true;
   self.player.setScale(0.7);
@@ -74,7 +74,7 @@ export function addOtherPlayers(self, playerInfo) {
   const otherPlayer = self.physics.add.sprite(
     playerInfo.x,
     playerInfo.y,
-    "alien",
+    "dino",
     1
   );
   otherPlayer.flipX = playerInfo.flipX;

@@ -67,9 +67,9 @@ export default class GameScene extends Phaser.Scene {
       spacing: 1,
     });
 
-    this.load.spritesheet("werewolf", "assets/werewolf.png", {
-      frameWidth: 42.5,
-      frameHeight: 190,
+    this.load.spritesheet("dino", "assets/dino.png", {
+      frameWidth: 167.5,
+      frameHeight: 160,
     });
 
     this.load.json("levelData", "json/levelData.json");
@@ -160,7 +160,15 @@ export default class GameScene extends Phaser.Scene {
       repeat: -1,
     });
 
-
+    this.anims.create({
+      key: "dinoWalking",
+      frames: this.anims.generateFrameNames("dino", {
+        //frames that are moving
+        frames: [0, 1, 2, 3],
+      }),
+      frameRate: 8,
+      repeat: -1,
+    });
 
     this.anims.create({
       key: "burning",
@@ -210,10 +218,8 @@ export default class GameScene extends Phaser.Scene {
     this.input.on(
       "pointerdown",
       function (event) {
-        // console.log("From SceneB to SceneC");
-        // console.log("huh", this.scene);
-
-        this.scene.switch("WaitingRoom");
+        //this click should be on a button once the winner banner appears. Then they can go back to WaitingRoom
+        //this.scene.switch("WaitingRoom");
       },
       this
     );
@@ -255,7 +261,7 @@ export default class GameScene extends Phaser.Scene {
       };
 
       if (!this.player.anims.isPlaying) {
-        this.player.anims.play("walking");
+        this.player.anims.play("dinoWalking");
       }
       if (this.cursors.left.isDown) {
         this.player.body.setVelocityX(-this.playerSpeed);
@@ -266,11 +272,11 @@ export default class GameScene extends Phaser.Scene {
         this.player.flipX = true;
 
         if (!this.player.anims.isPlaying) {
-          this.player.anims.play("walking");
+          this.player.anims.play("dinoWalking");
         }
       } else {
         this.player.body.setVelocityX(0);
-        this.player.anims.stop("walking");
+        this.player.anims.stop("dinoWalking");
         //default pose
         this.player.setFrame(1);
       }
